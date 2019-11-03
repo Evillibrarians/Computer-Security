@@ -179,34 +179,39 @@ void readStack()
 
 	////////////////////////////////////////////////
 	// put your magic code between here...
-	for (int i = 40; i >= -4; i--)
+	void* pCode = (void*)&partThree;
+	cout << "ReadStack " << (void*)&readStack;
+	cout << "\nReadStack's text " << (void*)&text;
+	cout << "\nPart Three " << (void*)&partThree << '\n';
+	for (int i = 30; i >= -4; i--)
 	{
-		cout << "[" << setw(2) << i << "] "; //index
-		cout << &number + i << ' '; //address
-		cout.setf(ios::hex, ios::basefield);
-		cout << noshowbase << setw(20) << *(&number + i); //hexadecimal
-		cout.setf(ios::dec, ios::basefield);
-		cout << setw(20) << *(&number + i); //decimal
-		cout << displayCharArray((char*)(&text) + 8 * i) << '\n';
-		//cout << displayCharArray((char*)(&text) + 8 * i) << "     ";
-		//cout << displayCharArray((char*)"Scopeisf") << '\n';
+		//cout << "[" << setw(2) << i << "] "; //index
+		//cout << &number + i << ' '; //address
+		//cout.setf(ios::hex, ios::basefield);
+		//cout << noshowbase << setw(20) << *(&number + i); //hexadecimal
+		//cout.setf(ios::dec, ios::basefield);
+		//cout << setw(20) << *(&number + i); //decimal
+		//cout << displayCharArray((char*)(&text) + 8 * i) << '\n';
+		//cout << &pCode << '\n';
+		//cout << &text << '\n';
+		//cout << &number << '\n';
+
+
 
 		if (displayCharArray((char*)(&text) + 8 * i) == displayCharArray((char*)"ScopeisforWimps!")) // i = 26
 		{
-			cout << i;
-			
+			cout << "\ntext " << (void*)((&text) + 8 * i);
 			for (int j = 0; j < 16; j++)
 			{
-				text[i] = *((char*)(&text) + 8 * i + j);
+				text[j] = *((char*)(&text) + 8 * i + j);
 			}
-			//text = displayCharArray((char*)(&number) + 8 * i - 4);
 		}
 
-		if (*(&number + i) == 52)
-		{
-			//cout << i << '\n';
-			number = *(&number + i);
-		}
+		//if (*(&number + i) == 101010101)
+		//{
+		//	//cout << i << '\n';
+		//	number = *(&number + i);
+		//}
 	}
 
 	// ... and here
